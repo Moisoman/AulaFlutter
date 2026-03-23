@@ -1,20 +1,63 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MainApp());
+void main(){
+  runApp(const MeuApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MeuApp extends StatelessWidget{
+  const MeuApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+  Widget build(BuildContext context){
+    return MaterialApp(
+      title: "Titulo",
+      home: const MinhaHomePage(title: "Testando"),
+      );
+
+  }
+}
+
+class MinhaHomePage extends StatefulWidget{
+  const MinhaHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MinhaHomePage> createState() => _MinhaHomePageState();
+
+}
+
+class _MinhaHomePageState extends State<MinhaHomePage>{
+  int _counter = 0;
+
+  void incrementar(){
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: .center,
+          children: [
+            const Text("Quantidade de clicks:"),
+            Text('$_counter')
+          ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: incrementar,
+        child: const Icon(Icons.add), 
+        ),
     );
   }
+
+
 }
