@@ -100,19 +100,12 @@ class _MinhaHomePageState extends State<MinhaHomePage>{
             Text('$_counter'),
 
             ElevatedButton(onPressed: (){setState(() {
-              texto = "Titulo Original";
+              texto = (texto == "Titulo Original") ? "Titulo Alterado" : "Titulo Original";
               _counter++;
             });},
             child: Icon(Icons.abc)
             ),
-
-             FloatingActionButton(
-              onPressed: (){setState(() {
-              texto = "titulo alterado";
-                _counter++;
-              });
-              },
-              child: const Icon(Icons.add),)]
+            ]
         )
     ));
       
