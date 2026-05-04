@@ -73,13 +73,10 @@ class MinhaHomePage extends StatefulWidget{
 }
 
 class _MinhaHomePageState extends State<MinhaHomePage>{
-  int _counter = 0;
-  String texto = "Alterar titulo";
-  // void incrementar(){
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
+  //int _counter = 0;
+  String texto = "Consultar";
+  String inputUsuario = "";
+  final TextEditingController inputController = TextEditingController();
 
   @override
   Widget build(BuildContext context){
@@ -93,21 +90,89 @@ class _MinhaHomePageState extends State<MinhaHomePage>{
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: .center,
           children: [
-            Text(texto),
-            _counter == 1 ? 
-            const Text("O titulo foi alterado 1 vez") :
-            const Text("Quantidade de vezes que o titulo foi alterado:"),
-            Text('$_counter'),
-
-            ElevatedButton(onPressed: (){setState(() {
-              texto = (texto == "Titulo Original") ? "Titulo Alterado" : "Titulo Original";
-              _counter++;
-            });},
-            child: Icon(Icons.abc)
+            Container(
+              padding: EdgeInsetsGeometry.all(50),
+              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width * 0.2,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 5, 167, 241),
+                borderRadius: BorderRadius.circular(45)
+              ),
+              child: Text(texto),
             ),
+
+            SizedBox(
+              width: 250,
+              child: 
+               TextField(
+                  controller: inputController,
+                  decoration: InputDecoration(
+                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(35))),
+              ),
+            )),
+
+            ElevatedButton(
+              onPressed: (){setState(() {
+                inputUsuario = "Olá ${inputController.text}";
+
+              });
+              }, 
+              child: Icon(Icons.agriculture_sharp)),
+
+            Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  inputUsuario, 
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+
+              Text(
+                inputUsuario,
+                style: TextStyle(fontSize: 50,fontWeight: FontWeight.w300)),
+
+
+            // ElevatedButton(onPressed: (){setState(() {
+            //   texto = (texto == "Titulo Original") ? "Titulo Alterado" : "Titulo Original";
+            //   _counter++;
+            // });},
+            // child: Icon(Icons.abc)
+            // ),
             ]
         )
     ));
       
+  }
 }
+
+class CardNome extends StatelessWidget{
+  final String nome;
+  final int idade;
+
+  const CardNome({
+    super.key, 
+    this.nome = "Moisossauro", 
+    this.idade = 123,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(12),
+      width: 100,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Colors.pink,
+        borderRadius: BorderRadius.circular(12)
+      ),
+      child: Row(
+        children: [
+          Text(this.nome),
+          Text(this.idade.toString())
+        ],
+      ),
+    );
+  }
+
+
 }
